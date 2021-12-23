@@ -37,6 +37,16 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                aria-current="page"
+                exact
+                to="/services"
+              >
+                Services
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <NavLink className="nav-link" exact to="/about">
                 About
               </NavLink>

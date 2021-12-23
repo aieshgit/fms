@@ -81,6 +81,8 @@ const EditVehicle = () => {
               <input
                 type="text"
                 className="form-control mt-0"
+                disabled
+                readOnly
                 name="vehicleNum"
                 value={vehicle.vehicleNum}
                 onChange={onInputChange}

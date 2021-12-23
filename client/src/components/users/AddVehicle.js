@@ -6,7 +6,7 @@ import BottomBar from "../layouts/BottomBar";
 const AddVehicle = () => {
   let history = useHistory();
   const [vehicle, setVehicle] = useState({
-    vehicleNum: "",
+    //  vehicleNum: "",
     regNum: "",
     vin: "",
     make: "",
@@ -62,18 +62,20 @@ const AddVehicle = () => {
           <div className="col-lg-3 p-3">
             <h5 className="text-left mb-4">Information</h5>
             <hr />
-            <div className="mb-3">
+            {/*             <div className="mb-3">
               <label htmlFor="vehicleNum" className="form-label mb-0">
                 Vehicle#
               </label>
               <input
                 type="text"
                 className="form-control mt-0"
+                disabled
+                readOnly
                 name="vehicleNum"
                 value={vehicle.vehicleNum}
                 onChange={onInputChange}
               />
-            </div>
+            </div> */}
 
             <div className="mb-3">
               <label htmlFor="make" className="form-label mb-0">

@@ -5,6 +5,7 @@ import Table from "../layouts/Table";
 const Vehicles = () => {
   const tableTitle = "Vehicles";
   const entity = "vehicles";
+  const addButton = "Add Vehicle";
   const headerItems = [
     "Vehicle#",
     "Registration",
@@ -14,7 +15,7 @@ const Vehicles = () => {
     "Build Date",
     "Action",
   ];
-  const orderedColumns = [
+  const columnOrder = [
     "vehicleNum",
     "regNum",
     "vin",
@@ -50,8 +51,9 @@ const Vehicles = () => {
         entity={entity}
         headerItems={headerItems}
         tableData={vehicles}
-        orderedColumns={orderedColumns}
+        columnOrder={columnOrder}
         deleteRecord={deleteVehicle}
+        addButton={addButton}
       />
     </div>
   );

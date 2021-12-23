@@ -16,7 +16,7 @@ const Table = (props) => {
   return (
     <>
       <div className="table-responsive">
-        <div className="table-wrapper">
+        <div className="table-wrapper ">
           <div className="table-title bg-primary">
             <div className="row">
               <div className="col-sm-6">
@@ -25,8 +25,8 @@ const Table = (props) => {
                 </h2>
               </div>
               <div className="col-sm-6">
-                <Link className="btn btn-dark" to="vehicles/add">
-                  Add Vehicle
+                <Link className="btn btn-dark" to={`${props.entity}/add`}>
+                  {props.addButton}
                 </Link>
               </div>
             </div>
@@ -37,7 +37,7 @@ const Table = (props) => {
               <tr>
                 <th scope="col">#</th>
                 {props.headerItems.map((headerItem, index) => (
-                  <th key={index} scope="col">
+                  <th key={headerItem} scope="col">
                     {headerItem}
                   </th>
                 ))}
@@ -50,8 +50,8 @@ const Table = (props) => {
                     {index2 + 1}
                   </th>
 
-                  {props.orderedColumns.map((orderedColumn, index3) => (
-                    <td key={index3}>{rowData[orderedColumn]}</td>
+                  {props.columnOrder.map((column, index3) => (
+                    <td key={rowData.id}>{rowData[column]}</td>
                   ))}
 
                   {/*                   {Object.values(rowData).map((colValue, index2) => (

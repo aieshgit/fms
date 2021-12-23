@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, /* useHistory, */ useParams } from "react-router-dom";
 //import BottomBar from "../layouts/BottomBar";
 
 const Vehicle = () => {
-  let history = useHistory();
+  // let history = useHistory();
   const { id } = useParams();
   const [vehicle, setVehicle] = useState({
     vehicleNum: "",
@@ -68,7 +68,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="vehicleNum"
                 value={vehicle.vehicleNum}
               />
@@ -82,7 +82,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="make"
                 value={vehicle.make}
               />
@@ -96,7 +96,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="model"
                 value={vehicle.model}
               />
@@ -110,7 +110,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="vin"
                 value={vehicle.vin}
               />
@@ -124,7 +124,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="vehicleType"
                 value={vehicle.vehicleType}
               />
@@ -138,7 +138,7 @@ const Vehicle = () => {
                 type="date"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="buildDate"
                 value={vehicle.buildDate}
               />
@@ -156,7 +156,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="regNum"
                 value={vehicle.regNum}
               />
@@ -170,7 +170,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="regState"
                 value={vehicle.regState}
               />
@@ -184,7 +184,7 @@ const Vehicle = () => {
                 type="date"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="regDueDate"
                 value={vehicle.regDueDate}
               />
@@ -198,7 +198,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="frequency"
                 value={vehicle.frequency}
               />
@@ -216,7 +216,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="engineNum"
                 value={vehicle.engineNum}
               />
@@ -230,7 +230,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="engineMake"
                 value={vehicle.engineMake}
               />
@@ -244,7 +244,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="engineModel"
                 value={vehicle.engineModel}
               />
@@ -258,7 +258,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="engineCapacity"
                 value={vehicle.engineCapacity}
               />
@@ -272,7 +272,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="engineGearBox"
                 value={vehicle.engineGearBox}
               />
@@ -290,7 +290,7 @@ const Vehicle = () => {
                 type="text"
                 className="form-control mt-0"
                 disabled
-                readonly
+                readOnly
                 name="etag"
                 value={vehicle.etag}
               />
