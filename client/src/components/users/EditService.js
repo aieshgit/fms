@@ -3,7 +3,6 @@ import Axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
 import BottomBar from "../layouts/BottomBar";
 import FileUpload from "../layouts/FileUpload";
-//import Dropdown from "../layouts/Dropdown";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Documents from "../pages/Documents";
@@ -28,7 +27,6 @@ const EditService = () => {
     const result = await Axios.get(`http://localhost:5000/services/${id}`);
     // console.log(result.data);
     setService(result.data);
-    // console.log(service);
   };
 
   const onInputChange = (event) => {
@@ -158,10 +156,14 @@ const EditService = () => {
         </div>
       </form>
 
-      <FileUpload parentObject={"service"} parentDbId={service.serviceDbId} />
+      <FileUpload
+        parentObject={"service"}
+        parentDbId={service.serviceDbId}
+        parentUuid={id}
+      />
       <ToastContainer />
 
-      <Documents parentDbId={service.serviceDbId} />
+      {service.serviceDbId && <Documents parentDbId={service.serviceDbId} />}
 
       <BottomBar handleSubmit={handleSubmit} handleCancel={handleCancel} p />
     </div>

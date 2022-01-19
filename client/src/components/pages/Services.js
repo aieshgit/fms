@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Table from "../layouts/Table";
+//import ServiceTypeModal from "../users/ServiceTypeModal";
+//import { Modal, Button } from "react-bootstrap";
 
 const Services = () => {
   const tableTitle = "Services";
@@ -57,6 +59,16 @@ const Services = () => {
         deleteRecord={deleteService}
         addButton={addButton}
       />
+      {/*       <Modal>
+        <Modal.Header></Modal.Header>
+        <Modal.Title>Add Service</Modal.Title>
+        <Modal.Body>
+          <ServiceTypeModal />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary">Close Button</Button>
+        </Modal.Footer>
+      </Modal> */}
     </div>
   );
 };

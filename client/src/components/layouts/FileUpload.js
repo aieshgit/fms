@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Axios from "axios";
-//import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+//import { useHistory } from "react-router-dom";
 
 const FileUpload = (props) => {
+  // let history = useHistory();
   const [files, setFiles] = useState([]);
   const onInputChange = (e) => {
     setFiles(e.target.files);
@@ -13,20 +14,24 @@ const FileUpload = (props) => {
     e.preventDefault();
 
     const data = new FormData();
+
     for (let i = 0; i < files.length; i++) {
+      // console.log(files);
       data.append("file", files[i]);
     }
+
     data.append("parentDbId", props.parentDbId);
     data.append("parentObject", props.parentObject);
+    //console.log(data);
 
     try {
       await Axios.post("http://localhost:5000/upload", data);
-      // console.log(res);
-      //history.push("/upload");
-      setFiles([]);
+      //history.push(`/services/edit/${props.parentUuid}`);
+      window.location.reload(true);
       toast.success("Upload Successful", {
         position: toast.POSITION.TOP_CENTER,
       });
+      //  window.location.reload(true);
     } catch (err) {
       console.error(err.message);
       toast.error("Upload Error", {
@@ -42,7 +47,7 @@ const FileUpload = (props) => {
       //encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
-      <div className="row">
+      <div className="row mb-3">
         <div className="col-lg-4">
           <label htmlFor="formFileMultiple" className="form-label mb-0">
             Add files
@@ -56,7 +61,7 @@ const FileUpload = (props) => {
             onChange={onInputChange}
           />
         </div>
-        <div className="col-lg-4 mb-5 gx-0">
+        <div className="col-lg-4 mt-0 gx-0">
           <button type="submit" className="btn btn-primary mt-4">
             Upload
           </button>

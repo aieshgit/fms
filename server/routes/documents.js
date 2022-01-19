@@ -5,13 +5,15 @@ const router = express.Router();
 const pool = require("../db");
 
 //get all document records
-router.get("/", async (req, res) => {
+router.get("/:parentDbId", async (req, res) => {
   try {
-    const parentDbId = "1";
+    // const parentDbId = "1";
     // console.log(req.params);
-    // const { parentDbId } = req.params;
+    // console.log(req);
+    const { parentDbId } = req.params;
+    // console.log(parentDbId);
     const allDocuments = await pool.query(
-      `select file_path as "filePath" from documents WHERE service_row_id = $1`,
+      `select file_name as "fileName", file_path as "filePath" from documents WHERE service_row_id = $1`,
       [parentDbId]
     );
     // console.log(service.rows[0]);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Link, /* useHistory, */ useParams } from "react-router-dom";
 //import BottomBar from "../layouts/BottomBar";
+import Documents from "../pages/Documents";
 
 const Service = () => {
   // let history = useHistory();
@@ -13,6 +14,7 @@ const Service = () => {
     startDate: "",
     completionDate: "",
     repairer: "",
+    serviceDbId: "",
   });
 
   useEffect(() => {
@@ -140,6 +142,8 @@ const Service = () => {
           </div>
         </div>
       </form>
+
+      {service.serviceDbId && <Documents parentDbId={service.serviceDbId} />}
 
       {/* <BottomBar handleSubmit={handleSubmit} handleCancel={handleCancel} p /> */}
     </div>

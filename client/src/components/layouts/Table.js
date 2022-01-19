@@ -45,13 +45,11 @@ const Table = (props) => {
             </thead>
             <tbody>
               {Object.values(props.tableData).map((rowData, index2) => (
-                <tr>
-                  <th key={index2} scope="row">
-                    {index2 + 1}
-                  </th>
+                <tr key={index2}>
+                  <th scope="row">{index2 + 1}</th>
 
                   {props.columnOrder.map((column, index3) => (
-                    <td key={rowData.id}>{rowData[column]}</td>
+                    <td key={index3}>{rowData[column]}</td>
                   ))}
 
                   {/*                   {Object.values(rowData).map((colValue, index2) => (
