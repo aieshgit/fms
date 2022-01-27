@@ -6,11 +6,11 @@ const ServiceTypeModal = () => {
       <Form.Group>
         <Form.Select aria-label="Service Type *" required>
           <option>Select</option>
-          <option value="A">Service A</option>
-          <option value="B">Service B</option>
-          <option value="C">Service C</option>
-          <option value="D">Service D</option>
-          <option value="E">Service E</option>
+          <option value="A">A Service</option>
+          <option value="B">B Service</option>
+          <option value="C">C Service</option>
+          <option value="D">D Service</option>
+          <option value="E">E Service</option>
         </Form.Select>
         <Form.Control type="text" placeholder="Service Example *" />
       </Form.Group>

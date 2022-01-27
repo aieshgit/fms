@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <Link className="navbar-brand" href="#" to="/">
           FleetPro
@@ -47,6 +47,16 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                aria-current="page"
+                exact
+                to="/odoReadings"
+              >
+                Odometer
+              </NavLink>
+            </li>
+            {/*             <li className="nav-item">
               <NavLink className="nav-link" exact to="/about">
                 About
               </NavLink>
@@ -55,12 +65,12 @@ const Navbar = () => {
               <NavLink className="nav-link" exact to="/contact">
                 Contact
               </NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
-        <Link className="btn btn-outline-light" to="users/add">
+        {/*         <Link className="btn btn-outline-light" to="users/add">
           Add User
-        </Link>
+        </Link> */}
       </div>
     </nav>
   );

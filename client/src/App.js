@@ -10,6 +10,10 @@ import Services from "./components/pages/Services";
 import AddService from "./components/users/AddService";
 import Service from "./components/users/Service";
 import EditService from "./components/users/EditService";
+import OdoReadings from "./components/pages/OdoReadings";
+import AddOdoReading from "./components/users/AddOdoReading";
+import EditOdoReading from "./components/users/EditOdoReading";
+import OdoReading from "./components/users/OdoReading";
 import About from "./components/pages/About";
 import Contact from "./components/pages/Contact";
 import Navbar from "./components/layouts/Navbar";
@@ -35,6 +39,14 @@ function App() {
           <Route exact path="/services/add" component={AddService} />
           <Route exact path="/services/:id" component={Service} />
           <Route exact path="/services/edit/:id" component={EditService} />
+          <Route exact path="/odoReadings" component={OdoReadings} />
+          <Route exact path="/odoReadings/add" component={AddOdoReading} />
+          <Route exact path="/odoReadings/:id" component={OdoReading} />
+          <Route
+            exact
+            path="/odoReadings/edit/:id"
+            component={EditOdoReading}
+          />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/users/add" component={AddUser} />

@@ -42,6 +42,7 @@ CREATE TABLE vehicles(
 alter sequence vehicles_row_id_seq restart with 1001;
 
 
+
 CREATE TABLE services(
     row_id SERIAL PRIMARY KEY,
    	id uuid DEFAULT uuid_generate_v4 (),
@@ -72,3 +73,20 @@ CREATE TABLE attachments(
 	      FOREIGN KEY(service_row_id) 
 	  REFERENCES services(row_id)
 );
+
+
+CREATE TABLE odometer(
+    row_id SERIAL PRIMARY KEY,
+   	id uuid DEFAULT uuid_generate_v4 (),
+    odo_num SERIAL UNIQUE,
+    reading_date DATE,
+	initial_reading Numeric,
+	final_reading Numeric,
+	mileage Numeric,
+	vehicle_row_id INT,
+      FOREIGN KEY(vehicle_row_id) 
+	  REFERENCES vehicles(row_id)
+	/* ON DELETE SET NULL */
+);
+
+alter sequence odometer_row_id_seq restart with 101;

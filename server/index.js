@@ -10,11 +10,13 @@ app.use(express.json());
 //ROUTES//
 const vehicleRoute = require("./routes/vehicles");
 const serviceRoute = require("./routes/services");
+const odoRoute = require("./routes/odoReadings");
 const uploadRoute = require("./routes/upload");
 const documentRoute = require("./routes/documents");
 
 app.use("/vehicles", vehicleRoute);
 app.use("/services", serviceRoute);
+app.use("/odoReadings", odoRoute);
 app.use("/upload", uploadRoute);
 app.use("/documents", documentRoute);
 

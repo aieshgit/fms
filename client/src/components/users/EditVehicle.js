@@ -67,7 +67,7 @@ const EditVehicle = () => {
   };
 
   return (
-    <div className="container p-2">
+    <div className="container p-5">
       <h2 className="text-center m-4">Edit Vehicle</h2>
       <form onSubmit={handleSubmit}>
         <div className="row my-5">

@@ -18,6 +18,14 @@ body {
 .table-responsive {
   margin: 30px 0;
 }
+
+.table-container {
+  padding-top: 75px;
+}
+.table-label {
+  padding-right: 820px;
+}
+
 .table-wrapper {
   background: #fff;
   padding: 20px 25px;

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Table from "../layouts/Table";
+//import Table from "../layouts/Table";
 //import ServiceTypeModal from "../users/ServiceTypeModal";
 //import { Modal, Button } from "react-bootstrap";
+import BsTable from "../layouts/BsTable";
+import { textFilter } from "react-bootstrap-table2-filter";
 
 const Services = () => {
-  const tableTitle = "Services";
+  /*    const tableTitle = "Services";
   const entity = "services";
-  const addButton = "Add Service";
-  const headerItems = [
+  const addButton = "Add Service"; */
+  /*   const headerItems = [
     "Service#",
     "Vehicle#",
     "Registration",
@@ -26,6 +28,42 @@ const Services = () => {
     "startDate",
     "completionDate",
     "repairer",
+  ]; */
+
+  const columns = [
+    {
+      dataField: "vehicleNum",
+      text: "Vehicle#",
+      sort: true,
+    },
+    {
+      dataField: "regNum",
+      text: "Registration",
+      filter: textFilter(),
+    },
+    {
+      dataField: "serviceType",
+      text: "Service Type",
+    },
+    {
+      dataField: "startDate",
+      text: "Start Date",
+      sort: true,
+      filter: textFilter(),
+    },
+    {
+      dataField: "completionDate",
+      text: "Completion Date",
+    },
+    {
+      dataField: "repairer",
+      text: "Repairer",
+    },
+    /*     {
+      dataField: "id",
+      text: "Actions",
+      formatter: action,
+    }, */
   ];
 
   const [services, setServices] = useState([]);
@@ -41,15 +79,14 @@ const Services = () => {
     setServices(result.data);
   };
 
-  const deleteService = async (id) => {
+  //delete service
+  /*   const deleteService = async (id) => {
     await axios.delete(`http://localhost:5000/services/${id}`);
     loadServices();
-  };
+  }; */
 
   return (
-    <div className="container">
-      {/*       <div className="py-4">
-        </div> */}
+    /*     <div className="container">
       <Table
         tableTitle={tableTitle}
         entity={entity}
@@ -58,8 +95,8 @@ const Services = () => {
         columnOrder={columnOrder}
         deleteRecord={deleteService}
         addButton={addButton}
-      />
-      {/*       <Modal>
+      /> */
+    /*       <Modal>
         <Modal.Header></Modal.Header>
         <Modal.Title>Add Service</Modal.Title>
         <Modal.Body>
@@ -68,8 +105,15 @@ const Services = () => {
         <Modal.Footer>
           <Button variant="secondary">Close Button</Button>
         </Modal.Footer>
-      </Modal> */}
-    </div>
+      </Modal> */
+    /*     </div> */
+    <BsTable
+      sObject="services"
+      tableTitle="Services"
+      columns={columns}
+      tableData={services}
+      addButton="Add Service"
+    />
   );
 };
 
