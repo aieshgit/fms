@@ -4,10 +4,14 @@ const router = express.Router();
 //const cors = require("cors");
 const pool = require("../db");
 
+//const {authenticateToken} = require("../authorization");
+//const authenticateToken = require("../authorization");
+//router.use(authenticateToken);
+
 // create vehicle record
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
+    // console.log(req.body);
     // format data: convert blank to null values
     Object.keys(req.body).map((key, index) => {
       if (req.body[key] === "") {
@@ -67,7 +71,7 @@ router.post("/", async (req, res) => {
         frequency,
       ]
     );
-    console.log(newVehicle);
+    //  console.log(newVehicle);
     res.json(newVehicle.rows[0]);
   } catch (err) {
     console.error(err.message);
@@ -85,7 +89,7 @@ router.put("/:id", async (req, res) => {
         req.body[key] = null;
       }
     });
-    console.log(req.body);
+    // console.log(req.body);
     const { id } = req.params;
     const {
       regNum,
@@ -148,6 +152,7 @@ router.put("/:id", async (req, res) => {
 });
 
 //get all vehicle records
+//router.get("/", authenticateToken, async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const allVehicles = await pool.query(
@@ -185,7 +190,8 @@ router.get("/:id", async (req, res) => {
       `SELECT reg_num as "regNum", vin, make, model, build_date as "buildDate", concat('V-',vehicle_num) as "vehicleNum", vehicle_type as "vehicleType", etag, gcm, gvm, tare, maint_entry as "maintEntry", maint_exit as "maintExit", mass_entry as "massEntry", mass_exit as "massExit", nhvas_label_num as "nhvasLabelNum", reg_due_date as "regDueDate", reg_state as "regState", engine_num as "engineNum", engine_make as "engineMake", engine_model as "engineModel", engine_capacity as "engineCapacity", engine_gearbox as "engineGearBox", frequency FROM vehicles WHERE id = $1`,
       [id]
     );
-    // console.log(vehicle.rows[0]);
+    //  console.log(vehicle);
+    //  console.log(vehicle.rows[0]);
 
     // format data: convert null to blank values
     Object.keys(vehicle.rows[0]).map((key, index) => {

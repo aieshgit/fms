@@ -13,7 +13,7 @@ router.get("/:parentDbId", async (req, res) => {
     const { parentDbId } = req.params;
     // console.log(parentDbId);
     const allDocuments = await pool.query(
-      `select file_name as "fileName", file_path as "filePath" from documents WHERE service_row_id = $1`,
+      `select file_name as "fileName" from documents WHERE service_row_id = $1`,
       [parentDbId]
     );
     // console.log(service.rows[0]);

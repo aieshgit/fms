@@ -90,3 +90,24 @@ CREATE TABLE odometer(
 );
 
 alter sequence odometer_row_id_seq restart with 101;
+
+
+CREATE TABLE employees(
+    row_id SERIAL PRIMARY KEY,
+   	id uuid DEFAULT uuid_generate_v4 (),
+    employee_num SERIAL UNIQUE,
+    first_name varchar,
+	last_name varchar,
+	title varchar,
+	license_num varchar,
+	mobile_num varchar,
+	email varchar UNIQUE,
+	address varchar,
+	city varchar,
+	state varchar,
+	postcode varchar,
+	start_date date,
+	end_date date
+);
+
+alter sequence employees_row_id_seq restart with 4001;

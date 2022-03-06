@@ -5,6 +5,9 @@ import axios from "axios";
 //import { Modal, Button } from "react-bootstrap";
 import BsTable from "../layouts/BsTable";
 import { textFilter } from "react-bootstrap-table2-filter";
+import UserAuth from "../auth/UserAuth";
+import { Link } from "react-router-dom";
+import { customSort } from "../utilities/Helpers";
 
 const Services = () => {
   /*    const tableTitle = "Services";
@@ -32,9 +35,17 @@ const Services = () => {
 
   const columns = [
     {
-      dataField: "vehicleNum",
-      text: "Vehicle#",
+      dataField: "serviceNum",
+      text: "Service#",
       sort: true,
+      sortFunc: customSort,
+      formatter: (cell, row) => {
+        return (
+          <>
+            <Link to={`services/${row.id}`}>{row.serviceNum}</Link>
+          </>
+        );
+      },
     },
     {
       dataField: "regNum",
@@ -49,7 +60,7 @@ const Services = () => {
       dataField: "startDate",
       text: "Start Date",
       sort: true,
-      filter: textFilter(),
+      // filter: textFilter(),
     },
     {
       dataField: "completionDate",
@@ -107,13 +118,15 @@ const Services = () => {
         </Modal.Footer>
       </Modal> */
     /*     </div> */
-    <BsTable
-      sObject="services"
-      tableTitle="Services"
-      columns={columns}
-      tableData={services}
-      addButton="Add Service"
-    />
+    <UserAuth>
+      <BsTable
+        sObject="services"
+        tableTitle="Services"
+        columns={columns}
+        tableData={services}
+        addButton="Add Service"
+      />
+    </UserAuth>
   );
 };
 

@@ -28,7 +28,7 @@ const Dropdown = (props) => {
         <option
           value={item[props.dropDownKey1]}
           dbid={item.dbId}
-          key={props.dropDownKey1}
+          key={props.dbId}
         >
           {/* {item[props.dropDownKey]} */}
           {item[props.dropDownKey1] + " [" + item[props.dropDownKey2] + "]"}

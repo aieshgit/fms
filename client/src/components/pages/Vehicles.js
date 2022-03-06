@@ -12,6 +12,10 @@ import axios from "axios";
 //import { Link } from "react-router-dom";
 //import ToolkitProvider, { Search } from "react-bootstrap-table2-toolkit";
 import BsTable from "../layouts/BsTable";
+import UserAuth from "../auth/UserAuth";
+import { Link } from "react-router-dom";
+import { customSort } from "../utilities/Helpers";
+import { textFilter } from "react-bootstrap-table2-filter";
 
 const Vehicles = () => {
   /*   const tableTitle = "Vehicles";
@@ -113,16 +117,25 @@ const Vehicles = () => {
     );
   }; */
   //for bootstrap table
+
   const columns = [
     {
       dataField: "vehicleNum",
       text: "Vehicle#",
-      // sort: true,
-      //  filter: textFilter(),
+      sort: true,
+      sortFunc: customSort,
+      formatter: (cell, row) => {
+        return (
+          <>
+            <Link to={`vehicles/${row.id}`}>{row.vehicleNum}</Link>
+          </>
+        );
+      },
     },
     {
       dataField: "regNum",
       text: "Registration",
+      filter: textFilter(),
     },
     {
       dataField: "vin",
@@ -211,13 +224,15 @@ const Vehicles = () => {
         </div>
       </div>
     </div> */
-    <BsTable
-      sObject="vehicles"
-      tableTitle="Vehicles"
-      columns={columns}
-      tableData={vehicles}
-      addButton="Add Vehicle"
-    />
+    <UserAuth>
+      <BsTable
+        sObject="vehicles"
+        tableTitle="Vehicles"
+        columns={columns}
+        tableData={vehicles}
+        addButton="Add Vehicle"
+      />
+    </UserAuth>
   );
 };
 

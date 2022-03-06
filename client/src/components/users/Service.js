@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Link, /* useHistory, */ useParams } from "react-router-dom";
 //import BottomBar from "../layouts/BottomBar";
 import Documents from "../pages/Documents";
+import UserAuth from "../auth/UserAuth";
 
 const Service = () => {
   // let history = useHistory();
@@ -34,20 +35,21 @@ const Service = () => {
   };
  */
   return (
-    <div className="table-container">
-      <div className="container p-5 table-container">
-        <Link className="btn btn-primary px-5" to="/services">
-          Back
-        </Link>
-        <h2 className="text-center m-4">Service</h2>
-        <form>
-          <div className="row my-5">
-            <div className="col-lg-3 p-3">
-              <div className="mb-3">
-                <label htmlFor="vehicleNum" className="form-label mb-0">
-                  Vehicle#
-                </label>
-                {/*               <select
+    <UserAuth>
+      <div className="table-container">
+        <div className="container p-5 table-container">
+          <Link className="btn btn-primary px-5" to="/services">
+            Back
+          </Link>
+          <h2 className="text-center m-4">Service</h2>
+          <form>
+            <div className="row my-5">
+              <div className="col-lg-3 p-3">
+                <div className="mb-3">
+                  <label htmlFor="vehicleNum" className="form-label mb-0">
+                    Vehicle#
+                  </label>
+                  {/*               <select
                 type="text"
                 className="form-select mt-0"
                 disabled
@@ -55,100 +57,103 @@ const Service = () => {
                 name="vehicleNum"
                 value={service.vehicleNum}
               ></select> */}
-                <input
-                  type="text"
-                  className="form-control mt-0"
-                  disabled
-                  readOnly
-                  name="vehicleNum"
-                  value={service.vehicleNum}
-                />
+                  <input
+                    type="text"
+                    className="form-control mt-0"
+                    disabled
+                    readOnly
+                    name="vehicleNum"
+                    value={service.vehicleNum}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="serviceType" className="form-label mb-0">
+                    Service Type
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control mt-0"
+                    disabled
+                    readOnly
+                    name="serviceType"
+                    value={service.serviceType}
+                  />
+                </div>
               </div>
 
-              <div className="mb-3">
-                <label htmlFor="serviceType" className="form-label mb-0">
-                  Service Type
-                </label>
-                <input
-                  type="text"
-                  className="form-control mt-0"
-                  disabled
-                  readOnly
-                  name="serviceType"
-                  value={service.serviceType}
-                />
+              <div className="col-lg-3 p-3">
+                <div className="mb-3">
+                  <label htmlFor="startDate" className="form-label mb-0">
+                    Start Date
+                  </label>
+                  <input
+                    type="date"
+                    className="form-control mt-0"
+                    disabled
+                    readOnly
+                    name="startDate"
+                    value={service.startDate}
+                  />
+                </div>
+
+                <div className="mb-3">
+                  <label htmlFor="completionDate" className="form-label mb-0">
+                    Completion Date
+                  </label>
+                  <input
+                    type="date"
+                    className="form-control mt-0"
+                    disabled
+                    readOnly
+                    name="completionDate"
+                    value={service.completionDate}
+                  />
+                </div>
+              </div>
+
+              <div className="col-lg-3 p-3">
+                <div className="mb-3">
+                  <label htmlFor="repairer" className="form-label mb-0">
+                    Repairer
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control mt-0"
+                    disabled
+                    readOnly
+                    name="repairer"
+                    value={service.repairer}
+                  />
+                </div>
+              </div>
+
+              <div className="col-lg-3 p-3">
+                <div className="mb-3">
+                  <label htmlFor="SpareField" className="form-label mb-0">
+                    Spare Field
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control mt-0"
+                    disabled
+                    readOnly
+                    name="SpareField"
+                    // value={service.completionDate}
+                  />
+                </div>
               </div>
             </div>
+          </form>
 
-            <div className="col-lg-3 p-3">
-              <div className="mb-3">
-                <label htmlFor="startDate" className="form-label mb-0">
-                  Start Date
-                </label>
-                <input
-                  type="date"
-                  className="form-control mt-0"
-                  disabled
-                  readOnly
-                  name="startDate"
-                  value={service.startDate}
-                />
-              </div>
+          {service.serviceDbId && (
+            <Documents parentDbId={service.serviceDbId} />
+          )}
 
-              <div className="mb-3">
-                <label htmlFor="completionDate" className="form-label mb-0">
-                  Completion Date
-                </label>
-                <input
-                  type="date"
-                  className="form-control mt-0"
-                  disabled
-                  readOnly
-                  name="completionDate"
-                  value={service.completionDate}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-3 p-3">
-              <div className="mb-3">
-                <label htmlFor="repairer" className="form-label mb-0">
-                  Repairer
-                </label>
-                <input
-                  type="text"
-                  className="form-control mt-0"
-                  disabled
-                  readOnly
-                  name="repairer"
-                  value={service.repairer}
-                />
-              </div>
-            </div>
-
-            <div className="col-lg-3 p-3">
-              <div className="mb-3">
-                <label htmlFor="SpareField" className="form-label mb-0">
-                  Spare Field
-                </label>
-                <input
-                  type="text"
-                  className="form-control mt-0"
-                  disabled
-                  readOnly
-                  name="SpareField"
-                  // value={service.completionDate}
-                />
-              </div>
-            </div>
-          </div>
-        </form>
-
-        {service.serviceDbId && <Documents parentDbId={service.serviceDbId} />}
-
-        {/* <BottomBar handleSubmit={handleSubmit} handleCancel={handleCancel} p /> */}
+          {/* <BottomBar handleSubmit={handleSubmit} handleCancel={handleCancel} p /> */}
+        </div>
       </div>
-    </div>
+    </UserAuth>
   );
 };
 

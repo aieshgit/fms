@@ -31,7 +31,8 @@ const Documents = (props) => {
         {documents.map((document, index) => (
           <div className="col-lg-3" key={index}>
             <a
-              href={document.filePath}
+              // href={document.filePath}
+              href={`${process.env.REACT_APP_FILE_SERVER}${document.fileName}`}
               target="_blank"
               rel="noopener noreferrer"
             >

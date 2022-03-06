@@ -10,28 +10,46 @@ import ToolkitProvider, {
   Search,
   CSVExport,
 } from "react-bootstrap-table2-toolkit";
+//import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 const BsTable = (props) => {
+  const sObject = props.sObject;
   const action = (id, row) => {
     return (
       <>
-        <Link
+        {/*         <Link
           //className="btn btn-primary btn-sm me-3"
           to={`${props.sObject}/${id}`}
         >
           <BsFillEyeFill className="me-5" />
-          {/* View */}
-        </Link>
+
+        </Link> */}
         <Link
           // className="btn btn-warning btn-sm me-3"
           to={`${props.sObject}/edit/${id}`}
         >
-          <BsFillPencilFill color="#f28500" className="me-5" />
+          <BsFillPencilFill color="#f28500" className="ms-3" />
           {/* Edit */}
         </Link>
       </>
     );
   };
+
+  /*   const drillDown = (cell, row) => {
+    return (
+      <>
+        <Link
+          //className="btn btn-primary btn-sm me-3"
+          to={`odoReadings/${row.id}`}
+        >
+          {row.odoNum}
+        </Link>
+      </>
+    );
+  }; */
+
   const columns = [
     ...props.columns,
     {
@@ -46,24 +64,25 @@ const BsTable = (props) => {
   const { SearchBar } = Search;
 
   return (
-    <div className="table-container">
-      <div className="container table-container">
+    // <div className="table-container">
+    <div className="container table-pt">
+      <div className="jumbotron">
         <div className="card shadow">
+          <div className="card-header">
+            <h2>{props.tableTitle}</h2>
+          </div>
           <div className="card-body">
-            <h2 className="card-title d-inline-block table-label">
-              Manage {props.tableTitle}
-            </h2>
+            {/*            <h2 className="card-title d-inline-block table-label">
+              {props.tableTitle}
+            </h2> */}
             {/*  <img src="../node_modules/bootstrap-icons/icons/alarm.svg" alt="" /> */}
-            <Link
-              className="btn btn-primary px-2 py-2 mt-1 ml-3 d-inline-block"
-              to={`${props.sObject}/add`}
-            >
-              {props.addButton}
-            </Link>
             <ToolkitProvider
+              bootstrap5
+              sObject={props.sObject}
               keyField="id"
               data={props.tableData}
               columns={columns}
+              defaultSorted={props.defaultSorted}
               search
               exportCSV={{
                 onlyExportFiltered: true,
@@ -72,13 +91,36 @@ const BsTable = (props) => {
             >
               {(props) => (
                 <div>
-                  <SearchBar
-                    {...props.searchProps}
-                    style={{ width: "400px", height: "40px" }}
-                  />
+                  <Link
+                    {...props.sObject}
+                    className="btn btn-primary px-2 py-2 ml-5 d-inline-block"
+                    to={`${sObject}/add`}
+                  >
+                    {/* {props.sObject} */}
+                    Add Data
+                  </Link>
                   <ExportCSVButton {...props.csvProps}>
-                    <FaFileExport size="40" color="#0d6efd" className="mb-2" />
+                    {/* <FaFileExport size="40" color="#0d6efd" className="mb-2" /> */}
+                    <button
+                      type="button"
+                      className="btn btn-primary px-2 py-2 ml-5 d-inline-block"
+                    >
+                      Export
+                    </button>
                   </ExportCSVButton>
+                  <div className="m-auto d-inline">
+                    <SearchBar
+                      {...props.searchProps}
+                      srText={null}
+                      style={{
+                        width: "300px",
+                        height: "40px",
+                        marginLeft: "600px",
+                        display: "inline",
+                      }}
+                    />
+                  </div>
+
                   <BootstrapTable
                     {...props.baseProps}
                     striped

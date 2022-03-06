@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   }
 
   for (let i = 0; i < file.length; i++) {
-    file[i].mv(`C:/fms/uploads/${file[i].name}`, (err) => {
+    file[i].mv(`${process.env.FILE_PATH}${file[i].name}`, (err) => {
       if (err) {
         console.error(err);
         return res.status(500).send(err);
@@ -37,12 +37,12 @@ router.post("/", async (req, res) => {
       const { parentDbId, parentObject } = req.body;
 
       const newDocument = pool.query(
-        "INSERT INTO documents (service_row_id, parent_object, file_name, file_path) VALUES($1, $2, $3, $4) RETURNING *",
+        "INSERT INTO documents (service_row_id, parent_object, file_name) VALUES($1, $2, $3) RETURNING *",
         [
           parentDbId,
           parentObject,
           file[i].name,
-          `http://127.0.0.1:8080/${file[i].name}`,
+          //`http://127.0.0.1:8080/${file[i].name}`,
         ]
       );
 
