@@ -13,7 +13,7 @@ const Dropdown = (props) => {
 
   const loadObject = async () => {
     const result = await axios.get(
-      `http://localhost:5000/${props.dropDownObject}`
+      `${process.env.REACT_APP_BACKEND_SERVER}/${props.dropDownObject}`
     );
     //console.log(result.data);
     //  result.data.map((item) => delete item.id);

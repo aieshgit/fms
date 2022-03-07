@@ -21,14 +21,17 @@ const UserAuth = ({ children }) => {
       // console.log("hello there");
       //  console.log("checkUserAuthToken 1: " + loginState.token);
       //let varLocalStorage = JSON.parse(window.localStorage.getItem("auth"));
-      const { data } = await axios.get(`http://localhost:5000/user-auth`, {
-        // headers: { Authorization: `Bearer ${loginState.token}` },
-        headers: {
-          authorization: `Bearer ${
-            JSON.parse(window.localStorage.getItem("auth")).token
-          }`,
-        },
-      });
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_SERVER}/user-auth`,
+        {
+          // headers: { Authorization: `Bearer ${loginState.token}` },
+          headers: {
+            authorization: `Bearer ${
+              JSON.parse(window.localStorage.getItem("auth")).token
+            }`,
+          },
+        }
+      );
 
       if (data.ok) {
         setUserAuth(true);

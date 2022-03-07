@@ -25,7 +25,7 @@ const FileUpload = (props) => {
     //console.log(data);
 
     try {
-      await Axios.post("http://localhost:5000/upload", data);
+      await Axios.post(`${process.env.REACT_APP_BACKEND_SERVER}/upload`, data);
       //history.push(`/services/edit/${props.parentUuid}`);
       window.location.reload(true);
       toast.success("Upload Successful", {
@@ -47,7 +47,7 @@ const FileUpload = (props) => {
       //encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
-      <div className="row mb-3">
+      <div className="row mb-5">
         <div className="col-lg-4">
           <label htmlFor="formFileMultiple" className="form-label mb-0">
             Add files
