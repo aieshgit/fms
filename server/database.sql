@@ -1,56 +1,46 @@
-CREATE DATABASE fleet_management_system;
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
-CREATE TABLE employees(
-    id SERIAL PRIMARY KEY,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20),
-    email VARCHAR(100),
-    website VARCHAR(100)
-);
 
 CREATE TABLE vehicles(
     row_id SERIAL PRIMARY KEY,
 	id uuid DEFAULT uuid_generate_v4 (),
 	vehicle_num SERIAL UNIQUE,
-    reg_num VARCHAR(10),
-    vin VARCHAR(20),
-    make VARCHAR(15),
-    model VARCHAR(15),
+    reg_num VARCHAR,
+    vin VARCHAR,
+    make VARCHAR,
+    model VARCHAR,
     build_date DATE,
-    vehicle_type VARCHAR(15),
-    etag VARCHAR(10),
-    gcm VARCHAR(6),
-    gvm VARCHAR(6),
-    tare VARCHAR(5),
+    vehicle_type VARCHAR,
+    etag VARCHAR,
+    gcm VARCHAR,
+    gvm VARCHAR,
+    tare VARCHAR,
     maint_entry DATE,
     maint_exit DATE,
     mass_entry DATE,
     mass_exit DATE,
     nhvas_label_num VARCHAR(8),
     reg_due_date DATE,
-    reg_state VARCHAR(3),
-    engine_num VARCHAR(10),
-    engine_make VARCHAR(10),
-    engine_model VARCHAR(10),
-    engine_capacity VARCHAR(4),
-    engine_gearbox VARCHAR(15),
-    frequency VARCHAR(10)
+    reg_state VARCHAR,
+    engine_num VARCHAR,
+    engine_make VARCHAR,
+    engine_model VARCHAR,
+    engine_capacity VARCHAR,
+    engine_gearbox VARCHAR,
+    frequency VARCHAR
 );
 
 alter sequence vehicles_row_id_seq restart with 1001;
-
 
 
 CREATE TABLE services(
     row_id SERIAL PRIMARY KEY,
    	id uuid DEFAULT uuid_generate_v4 (),
     service_num SERIAL UNIQUE,
-   service_type VARCHAR(15),
+   service_type VARCHAR,
    start_date DATE,
    completion_date DATE,
-	repairer VARCHAR(30),
+	repairer VARCHAR,
 	vehicle_row_id INT,
       FOREIGN KEY(vehicle_row_id) 
 	  REFERENCES vehicles(row_id)
@@ -59,13 +49,14 @@ CREATE TABLE services(
 
 alter sequence services_row_id_seq restart with 2001;
 
-CREATE TABLE attachments(
+
+CREATE TABLE documents(
     row_id SERIAL PRIMARY KEY,
 	id uuid DEFAULT uuid_generate_v4 (),
 	doc_num SERIAL UNIQUE,
-	parent_object varchar(15), 
-    file_path varchar(250),
-	file_name varchar(150),
+	parent_object varchar, 
+    file_path varchar,
+	file_name varchar,
 	service_row_id INT,
 	      FOREIGN KEY(service_row_id) 
 	  REFERENCES services(row_id),
@@ -98,7 +89,7 @@ CREATE TABLE employees(
     employee_num SERIAL UNIQUE,
     first_name varchar,
 	last_name varchar,
-	title varchar,
+	job_title varchar,
 	license_num varchar,
 	mobile_num varchar,
 	email varchar UNIQUE,
@@ -111,3 +102,15 @@ CREATE TABLE employees(
 );
 
 alter sequence employees_row_id_seq restart with 4001;
+
+CREATE TABLE users
+(
+    row_id SERIAL PRIMARY KEY,
+    id uuid DEFAULT uuid_generate_v4(),
+    user_num SERIAL UNIQUE,
+    username varchar UNIQUE,
+    password varchar
+);
+
+alter sequence users_row_id_seq restart with 5001;
+

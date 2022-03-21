@@ -23,6 +23,7 @@ const Login = () => {
         `${process.env.REACT_APP_BACKEND_SERVER}/login`,
         loginData
       );
+      console.log(data);
       // can also do below
       //  const result = await Axios.post("http://localhost:5000/login", loginData);
       //  setState({ user: result.data.username, token: result.data.token });

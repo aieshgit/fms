@@ -37,7 +37,7 @@ const AddService = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log(service);
+      //  console.log(service);
       await Axios.post(
         `${process.env.REACT_APP_BACKEND_SERVER}/services`,
         service

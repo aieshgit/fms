@@ -14,7 +14,7 @@ const authenticateToken = (req, res, next) => {
     }
 
     req.user = verifiedJwt;
-    console.log("success: " + req.user);
+    // console.log("success: " + req.user);
     next();
   });
 };

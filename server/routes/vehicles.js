@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
       engineMake,
       engineModel,
       engineCapacity,
-      engineGearbox,
+      engineGearBox,
       frequency,
     } = req.body;
     const newVehicle = await pool.query(
@@ -67,7 +67,7 @@ router.post("/", async (req, res) => {
         engineMake,
         engineModel,
         engineCapacity,
-        engineGearbox,
+        engineGearBox,
         frequency,
       ]
     );
@@ -113,7 +113,7 @@ router.put("/:id", async (req, res) => {
       engineMake,
       engineModel,
       engineCapacity,
-      engineGearbox,
+      engineGearBox,
       frequency,
     } = req.body;
     const UpdateVehicle = await pool.query(
@@ -141,7 +141,7 @@ router.put("/:id", async (req, res) => {
         engineMake,
         engineModel,
         engineCapacity,
-        engineGearbox,
+        engineGearBox,
         frequency,
       ]
     );

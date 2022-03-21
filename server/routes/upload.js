@@ -8,7 +8,7 @@ const pool = require("../db");
 router.use(fileUpload({ createParentPath: true }));
 
 router.post("/", async (req, res) => {
-  console.log(req.files);
+  //  console.log(req.files);
   if (req.files === null) {
     return res.status(400).json({ msg: "No file uploaded" });
   }

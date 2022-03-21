@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 const UserAuth = ({ children }) => {
   let history = useHistory();
   const [isUserAuth, setUserAuth] = useState(false);
-  const [loginState] = useContext(LoginContext);
+  const [loginState, setLoginState] = useContext(LoginContext);
 
   useEffect(() => {
     // if (loginState && loginState.token) {

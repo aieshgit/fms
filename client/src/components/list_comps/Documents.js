@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import UserAuth from "../auth/UserAuth";
+import FileDownload from "js-file-download";
 
 const Documents = (props) => {
   const parentDbId = props.parentDbId;
@@ -8,7 +10,7 @@ const Documents = (props) => {
 
   //mount
   useEffect(() => {
-    console.log("first use effect");
+    // console.log("first use effect");
     loadDocuments();
   }, []);
 
@@ -26,23 +28,35 @@ const Documents = (props) => {
     setDocuments(result.data);
   };
 
+  const handleDownload = async (e, fileName) => {
+    e.preventDefault();
+    const file = await axios.get(
+      // `http://localhost:5000/documents/${parentDbId}`
+      `${process.env.REACT_APP_BACKEND_SERVER}/download/${fileName}`,
+      { responseType: "blob" }
+    );
+    FileDownload(file.data, fileName);
+  };
+
   return (
-    <>
+    <UserAuth>
       <div className="row">
         {documents.map((document, index) => (
           <div className="col-lg-3" key={index}>
             <a
-              // href={document.filePath}
-              href={`${process.env.REACT_APP_FILE_SERVER}/${document.fileName}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              // href={`${process.env.REACT_APP_FILE_SERVER}/${document.fileName}`}
+              href="javascript"
+              // target="_blank"
+              //  rel="noopener noreferrer"
+              // download
+              onClick={(e) => handleDownload(e, document.fileName)}
             >
               {document.fileName}
             </a>
           </div>
         ))}
       </div>
-    </>
+    </UserAuth>
   );
 };
 

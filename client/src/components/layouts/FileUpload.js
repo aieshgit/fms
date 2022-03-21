@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 //import { useHistory } from "react-router-dom";
 
 const FileUpload = (props) => {
@@ -26,12 +27,13 @@ const FileUpload = (props) => {
 
     try {
       await Axios.post(`${process.env.REACT_APP_BACKEND_SERVER}/upload`, data);
+
       //history.push(`/services/edit/${props.parentUuid}`);
       window.location.reload(true);
+
       toast.success("Upload Successful", {
         position: toast.POSITION.TOP_CENTER,
       });
-      //  window.location.reload(true);
     } catch (err) {
       console.error(err.message);
       toast.error("Upload Error", {

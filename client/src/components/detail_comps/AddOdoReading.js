@@ -44,7 +44,7 @@ const AddOdoReading = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log(odoReading);
+      //console.log(odoReading);
       await Axios.post(
         `${process.env.REACT_APP_BACKEND_SERVER}/odoReadings`,
         odoReading
