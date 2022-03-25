@@ -66,79 +66,80 @@ const BsTable = (props) => {
   return (
     // <div className="table-container">
     <div className="container table-pt">
-      <div className="jumbotron">
-        <div className="card shadow">
-          <div className="card-header">
-            <h3>{props.tableTitle}</h3>
-          </div>
-          <div className="card-body">
-            {/*            <h2 className="card-title d-inline-block table-label">
+      {/* <div className="jumbotron"> */}
+      <div className="card shadow">
+        <div className="card-header">
+          <h3>{props.tableTitle}</h3>
+        </div>
+        <div className="card-body">
+          {/*            <h2 className="card-title d-inline-block table-label">
               {props.tableTitle}
             </h2> */}
-            {/*  <img src="../node_modules/bootstrap-icons/icons/alarm.svg" alt="" /> */}
-            <ToolkitProvider
-              bootstrap5
-              sObject={props.sObject}
-              keyField="id"
-              data={props.tableData}
-              columns={columns}
-              defaultSorted={props.defaultSorted}
-              search
-              exportCSV={{
-                onlyExportFiltered: true,
-                exportAll: false,
-              }}
-            >
-              {(props) => (
-                <div>
-                  <Link
-                    {...props.sObject}
-                    className="btn btn-primary px-2 py-2 ml-5 d-inline-block"
-                    to={`${sObject}/add`}
+          {/*  <img src="../node_modules/bootstrap-icons/icons/alarm.svg" alt="" /> */}
+          <ToolkitProvider
+            bootstrap4
+            sObject={props.sObject}
+            keyField="id"
+            data={props.tableData}
+            columns={columns}
+            defaultSorted={props.defaultSorted}
+            search
+            exportCSV={{
+              onlyExportFiltered: true,
+              exportAll: false,
+            }}
+          >
+            {(props) => (
+              <div>
+                <Link
+                  {...props.sObject}
+                  className="btn btn-primary px-1 py-1 ml-5 d-inline-block"
+                  to={`${sObject}/add`}
+                >
+                  {/* {props.sObject} */}
+                  Add Data
+                </Link>
+                <ExportCSVButton {...props.csvProps}>
+                  {/* <FaFileExport size="40" color="#0d6efd" className="mb-2" /> */}
+                  <button
+                    // type="button"
+                    className="btn btn-primary px-1 py-1 ml-5 d-inline-block"
                   >
-                    {/* {props.sObject} */}
-                    Add Data
-                  </Link>
-                  <ExportCSVButton {...props.csvProps}>
-                    {/* <FaFileExport size="40" color="#0d6efd" className="mb-2" /> */}
-                    <button
-                      // type="button"
-                      className="btn btn-primary px-2 py-2 ml-5 d-inline-block"
-                    >
-                      Export
-                    </button>
-                  </ExportCSVButton>
-                  <div className="m-auto d-inline">
-                    <SearchBar
-                      {...props.searchProps}
-                      srText={null}
-                      style={{
-                        width: "300px",
-                        height: "40px",
-                        marginLeft: "600px",
-                        display: "inline",
-                      }}
-                    />
-                  </div>
-
-                  <BootstrapTable
-                    {...props.baseProps}
-                    striped
-                    hover
-                    bordered={false}
-                    condensed //  rowStyle={rowStyle}
-                    pagination={paginationFactory()}
-                    cellEdit={cellEditFactory({
-                      mode: "dbclick",
-                    })}
-                    filter={filterFactory()}
+                    Export
+                  </button>
+                </ExportCSVButton>
+                <div className="m-auto d-inline">
+                  <SearchBar
+                    {...props.searchProps}
+                    srText={null}
+                    style={{
+                      width: "300px",
+                      height: "34px",
+                      marginLeft: "600px",
+                      //  marginTop: "7px",
+                      display: "inline",
+                    }}
                   />
                 </div>
-              )}
-            </ToolkitProvider>
-          </div>
+
+                <BootstrapTable
+                  {...props.baseProps}
+                  striped
+                  hover
+                  bordered={false}
+                  condensed //  rowStyle={rowStyle}
+                  pagination={paginationFactory()}
+                  /*  cellEdit={cellEditFactory({
+                    mode: "dbclick",
+                  })} */
+                  filter={filterFactory()}
+                />
+              </div>
+            )}
+          </ToolkitProvider>
         </div>
       </div>
+      {/* </div> */}
     </div>
   );
 };
