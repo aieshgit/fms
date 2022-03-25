@@ -153,8 +153,8 @@ const AddService = () => {
                     type="text"
                     className="form-control mt-0"
                     name="SpareField"
-                    value={service.completionDate}
-                    onChange={onInputChange}
+                    // value={service.completionDate}
+                    // onChange={onInputChange}
                   />
                 </div>
               </div>

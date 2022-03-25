@@ -13,7 +13,8 @@ router.post("/", async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await pool.query(
-      `SELECT id, username, password FROM users WHERE username = $1`,
+      //`SELECT id, username, password FROM users WHERE username = $1`,
+      `SELECT username, password FROM users WHERE username = $1`,
       [username]
     );
 
@@ -38,7 +39,11 @@ router.post("/", async (req, res) => {
       const tokens = jwtTokens(user.rows[0]);
 
       // res.cookie("refresh_token", tokens.refreshToken, { httpOnly: true });
-      res.json({ token: tokens.accessToken, username: user.rows[0].username });
+      res.json({
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+        username: user.rows[0].username,
+      });
     } else {
       res.status(400).json("Username or password incorrect");
     }

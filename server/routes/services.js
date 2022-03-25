@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
-
 //const cors = require("cors");
 const pool = require("../db");
 
 // create service record
 router.post("/", async (req, res) => {
   try {
-    console.log(req.body);
+    //  console.log(req.body);
     // format data: convert blank to null values
     Object.keys(req.body).map((key, index) => {
       if (req.body[key] === "") {
@@ -20,7 +19,7 @@ router.post("/", async (req, res) => {
       "INSERT INTO services (vehicle_row_id, service_type, start_date, completion_date, repairer) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [vehicleDbId, serviceType, startDate, completionDate, repairer]
     );
-    console.log(newService);
+    //  console.log(newService);
     res.json(newService.rows[0]);
   } catch (err) {
     console.error(err.message);
@@ -86,7 +85,7 @@ router.put("/:id", async (req, res) => {
         req.body[key] = null;
       }
     });
-    console.log(req.body);
+    //  console.log(req.body);
     const { id } = req.params;
     const { serviceType, startDate, completionDate, repairer } = req.body;
     const UpdateService = await pool.query(

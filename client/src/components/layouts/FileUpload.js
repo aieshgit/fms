@@ -49,7 +49,7 @@ const FileUpload = (props) => {
       //encType="multipart/form-data"
       onSubmit={handleSubmit}
     >
-      <div className="row mb-5">
+      <div className="row mb-3">
         <div className="col-lg-4">
           <label htmlFor="formFileMultiple" className="form-label mb-0">
             Add files

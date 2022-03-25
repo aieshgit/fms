@@ -23,18 +23,18 @@ const Login = () => {
         `${process.env.REACT_APP_BACKEND_SERVER}/login`,
         loginData
       );
-      console.log(data);
+      //  console.log(data);
       // can also do below
       //  const result = await Axios.post("http://localhost:5000/login", loginData);
-      //  setState({ user: result.data.username, token: result.data.token });
+      //  setState({ user: result.data.username, token: result.data.accessToken });
 
       //set context state variable
-      setLoginState({ user: data.username, token: data.token });
+      setLoginState({ user: data.username, token: data.accessToken });
 
       //save in local storage
       window.localStorage.setItem("auth", JSON.stringify(data));
       // if not using context state below can be used as per pedro's video
-      //window.localStorage.setItem("auth", "Bearer " + response.data.token);
+      //window.localStorage.setItem("auth", "Bearer " + response.data.accessToken);
 
       // redirect to dashboard/homepage
       history.push("/dashboard");

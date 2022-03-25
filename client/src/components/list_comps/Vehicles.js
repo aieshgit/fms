@@ -135,7 +135,7 @@ const Vehicles = () => {
     {
       dataField: "regNum",
       text: "Registration",
-      filter: textFilter(),
+      // filter: textFilter(),
     },
     {
       dataField: "vin",

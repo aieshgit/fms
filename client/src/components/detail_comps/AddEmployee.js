@@ -32,7 +32,15 @@ const AddEmployee = () => {
     try {
       await Axios.post(
         `${process.env.REACT_APP_BACKEND_SERVER}/employees`,
-        employee
+        employee /* ,
+        {
+          // headers: { Authorization: `Bearer ${loginState.accessToken}` },
+          headers: {
+            authorization: `Bearer ${
+              JSON.parse(window.localStorage.getItem("auth")).accessToken
+            }`,
+          },
+        } */
       );
       history.push("/employees");
     } catch (err) {
@@ -86,7 +94,7 @@ const AddEmployee = () => {
                   <input
                     type="text"
                     className="form-control mt-0"
-                    name="JobTitle"
+                    name="jobTitle"
                     value={employee.jobTitle}
                     onChange={onInputChange}
                   />

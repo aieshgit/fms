@@ -9,7 +9,7 @@ const authenticateToken = (req, res, next) => {
   }
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, verifiedJwt) => {
     if (error) {
-      console.log("this is an error:" + error.message);
+      console.log("access token error:" + error.message);
       return res.status(403).json({ error: error.message });
     }
 

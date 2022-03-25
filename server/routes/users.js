@@ -1,11 +1,14 @@
 const express = require("express");
 const router = express.Router();
+//const authenticateToken = require("../authorization");
+//router.use(authenticateToken);
 
 //const cors = require("cors");
 const pool = require("../db");
 const bcrypt = require("bcrypt");
 
 // create user record
+//router.post("/", authenticateToken, async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     console.log(req.body);

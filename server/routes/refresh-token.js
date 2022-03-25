@@ -3,22 +3,29 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const jwtTokens = require("../jwt-helper");
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const refreshToken = req.cookies.refresh_token;
+    const refreshToken = req.body.refreshToken;
     if (refreshToken === null) {
-      return res.status(401).json({ error: "NUll refresh token" });
+      return res.status(401).json({ error: "Null refresh token" });
     }
     jwt.verify(
       refreshToken,
       process.env.REFRESH_TOKEN_SECRET,
       (error, verifiedJwt) => {
         if (error) {
-          return res.status(403).json({ error: error.message });
+          return res
+            .status(403)
+            .json({ tokenType: "refreshToken", error: error.message });
         }
         const tokens = jwtTokens(verifiedJwt);
-        res.cookie("refresh_token", tokens.refreshToken, { httpOnly: true });
-        res.json(tokens);
+        // res.cookie("refresh_token", tokens.refreshToken, { httpOnly: true });
+        // res.json(tokens);
+        res.json({
+          accessToken: tokens.accessToken,
+          refreshToken: tokens.refreshToken,
+          // username: user.rows[0].username,
+        });
       }
     );
   } catch (error) {

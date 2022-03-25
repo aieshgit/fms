@@ -59,10 +59,10 @@ const EditService = () => {
 
   return (
     <UserAuth>
-      <div className="container p-5 mb-0">
-        <h2 className="text-center m-4">Edit Service</h2>
+      <div className="container">
+        <h2 className="text-center mt-3">Edit Service</h2>
         <form onSubmit={handleSubmit}>
-          <div className="row my-5">
+          <div className="row mt-3 mb-5">
             <div className="col-lg-3 p-3">
               <div className="mb-3">
                 <label htmlFor="vehicleNum" className="form-label mb-0">

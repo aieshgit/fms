@@ -25,7 +25,7 @@ const Employees = () => {
     {
       dataField: "fullName",
       text: "Name",
-      filter: textFilter(),
+      // filter: textFilter(),
     },
     {
       dataField: "jobTitle",

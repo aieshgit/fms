@@ -40,7 +40,7 @@ const Documents = (props) => {
 
   return (
     <UserAuth>
-      <div className="row">
+      <div className="row mb-5 mb-10">
         {documents.map((document, index) => (
           <div className="col-lg-3" key={index}>
             <a

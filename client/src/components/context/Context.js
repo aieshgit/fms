@@ -6,7 +6,7 @@ const LoginProvider = ({ children }) => {
   const [loginState, setLoginState] = useState({
     //  user: {},
     user: "",
-    token: "",
+    accessToken: "",
   });
 
   useEffect(() => {

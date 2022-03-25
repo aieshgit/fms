@@ -12,30 +12,39 @@ app.use(express.json());
 //app.use(cookieParser());
 //app.use(authenticateToken);
 
-//ROUTES//
+//authentication routes
+const loginRoute = require("./routes/login");
+const refreshTokenRoute = require("./routes/refresh-token");
+const userAuthRoute = require("./routes/user-auth");
+app.use("/login", loginRoute);
+app.use("/refresh-token", refreshTokenRoute);
+app.use("/user-auth", userAuthRoute);
+
+//app.use(authenticateToken);
+//SECURED ROUTES//
 const vehicleRoute = require("./routes/vehicles");
 const serviceRoute = require("./routes/services");
 const odoRoute = require("./routes/odoReadings");
 const employeeRoute = require("./routes/employees");
 const uploadRoute = require("./routes/upload");
 const documentRoute = require("./routes/documents");
-const loginRoute = require("./routes/login");
+//const loginRoute = require("./routes/login");
 const userRoute = require("./routes/users");
-const userAuthRoute = require("./routes/user-auth");
+//const userAuthRoute = require("./routes/user-auth");
 const downloadRoute = require("./routes/download");
 //const refreshTokenRoute = require("./routes/refresh-token");
 
-app.use("/vehicles", vehicleRoute);
-app.use("/services", serviceRoute);
-app.use("/odoReadings", odoRoute);
-app.use("/employees", employeeRoute);
-app.use("/upload", uploadRoute);
-app.use("/documents", documentRoute);
-app.use("/login", loginRoute);
-app.use("/users", userRoute);
+app.use("/vehicles", authenticateToken, vehicleRoute);
+app.use("/services", authenticateToken, serviceRoute);
+app.use("/odoReadings", authenticateToken, odoRoute);
+app.use("/employees", authenticateToken, employeeRoute);
+app.use("/upload", authenticateToken, uploadRoute);
+app.use("/documents", authenticateToken, documentRoute);
+//app.use("/login", loginRoute);
+app.use("/users", authenticateToken, userRoute);
 //app.use("/refresh-token", refreshTokenRoute);
-app.use("/user-auth", userAuthRoute);
-app.use("/download", downloadRoute);
+//app.use("/user-auth", userAuthRoute);
+app.use("/download", authenticateToken, downloadRoute);
 
 app.listen(5000, () => {
   console.log("server has started on port 5000");

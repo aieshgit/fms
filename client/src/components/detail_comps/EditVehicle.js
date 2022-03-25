@@ -74,10 +74,10 @@ const EditVehicle = () => {
 
   return (
     <UserAuth>
-      <div className="container p-5">
-        <h2 className="text-center m-4">Edit Vehicle</h2>
+      <div className="container">
+        <h2 className="text-center mt-3">Edit Vehicle</h2>
         <form onSubmit={handleSubmit}>
-          <div className="row my-5">
+          <div className="row mt-3 mb-5">
             <div className="col-lg-3 p-3">
               <h5 className="text-left mb-4">Information</h5>
               <hr />

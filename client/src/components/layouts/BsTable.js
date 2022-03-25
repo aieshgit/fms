@@ -69,7 +69,7 @@ const BsTable = (props) => {
       <div className="jumbotron">
         <div className="card shadow">
           <div className="card-header">
-            <h2>{props.tableTitle}</h2>
+            <h3>{props.tableTitle}</h3>
           </div>
           <div className="card-body">
             {/*            <h2 className="card-title d-inline-block table-label">
@@ -102,7 +102,7 @@ const BsTable = (props) => {
                   <ExportCSVButton {...props.csvProps}>
                     {/* <FaFileExport size="40" color="#0d6efd" className="mb-2" /> */}
                     <button
-                      type="button"
+                      // type="button"
                       className="btn btn-primary px-2 py-2 ml-5 d-inline-block"
                     >
                       Export
