@@ -13,20 +13,6 @@ const OdoReadings = () => {
       dataField: "odoNum",
       text: "Odometer#",
       sort: true,
-      /*       sortFunc: (a, b, order, dataField) => {
-        if (order === "asc" || !order) {
-          return b.localeCompare(
-            a,
-            navigator.languages[0] || navigator.language,
-            { numeric: true, ignorePunctuation: true }
-          );
-        }
-        return a.localeCompare(
-          b,
-          navigator.languages[0] || navigator.language,
-          { numeric: true, ignorePunctuation: true }
-        );
-      }, */
       sortFunc: customSort,
       //formatter: drillDown,
       formatter: (cell, row) => {
@@ -40,7 +26,7 @@ const OdoReadings = () => {
     {
       dataField: "regNum",
       text: "Registration",
-      filter: textFilter(),
+      filter: textFilter({ style: { height: "33px", width: "120px" } }),
     },
     {
       dataField: "readingDate",
@@ -57,6 +43,13 @@ const OdoReadings = () => {
     {
       dataField: "mileage",
       text: "Mileage",
+    },
+  ];
+
+  const defaultSortedBy = [
+    {
+      dataField: "odoNum",
+      order: "desc", // or desc
     },
   ];
 
@@ -81,13 +74,6 @@ const OdoReadings = () => {
     loadOdometer();
   }; */
 
-  const defaultSorted = [
-    {
-      dataField: "odoNum", // if dataField is not match to any column you defined, it will be ignored.
-      order: "asc", // desc or asc
-    },
-  ];
-
   return (
     <UserAuth>
       <BsTable
@@ -96,7 +82,7 @@ const OdoReadings = () => {
         columns={columns}
         tableData={odoReadings}
         addButton="Add Reading"
-        defaultSorted={defaultSorted}
+        defaultSortedBy={defaultSortedBy}
       />
     </UserAuth>
   );

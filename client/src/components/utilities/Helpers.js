@@ -4,8 +4,8 @@
     return a + b;
   }
  */
-export function customSort(a, b, order, dataField) {
-  if (order === "asc" || !order) {
+export function customSort(a, b, order, dataField, rowA, rowB) {
+  if (order === "desc" || !order) {
     return b.localeCompare(a, navigator.languages[0] || navigator.language, {
       numeric: true,
       ignorePunctuation: true,

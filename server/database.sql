@@ -114,3 +114,11 @@ CREATE TABLE users
 
 alter sequence users_row_id_seq restart with 5001;
 
+
+
+alter sequence vehicles_row_id_seq restart with 2001;
+alter sequence services_row_id_seq restart with 1001;
+alter sequence odometer_row_id_seq restart with 101;
+alter sequence employees_row_id_seq restart with 4001;
+
+/* alter sequence vehicles_vehicle_num_seq restart with 14; */

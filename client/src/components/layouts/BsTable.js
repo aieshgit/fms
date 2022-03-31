@@ -10,12 +10,12 @@ import ToolkitProvider, {
   Search,
   CSVExport,
 } from "react-bootstrap-table2-toolkit";
-//import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 
 const BsTable = (props) => {
   const sObject = props.sObject;
+  const defaultSortedBy = props.defaultSortedBy;
   const action = (id, row) => {
     return (
       <>
@@ -82,7 +82,6 @@ const BsTable = (props) => {
             keyField="id"
             data={props.tableData}
             columns={columns}
-            defaultSorted={props.defaultSorted}
             search
             exportCSV={{
               onlyExportFiltered: true,
@@ -133,6 +132,7 @@ const BsTable = (props) => {
                     mode: "dbclick",
                   })} */
                   filter={filterFactory()}
+                  defaultSorted={defaultSortedBy}
                 />
               </div>
             )}

@@ -34,7 +34,7 @@ const Employees = () => {
     {
       dataField: "licenseNum",
       text: "License#",
-      //  sort: true,
+      //sort: true,
     },
     /*     {
       dataField: "id",
@@ -43,7 +43,12 @@ const Employees = () => {
     }, */
   ];
 
-  // const defaultSorted = [{ datafield: "employeeNum", order: "asc" }];
+  const defaultSortedBy = [
+    {
+      dataField: "employeeNum",
+      order: "desc", // or desc
+    },
+  ];
 
   const [employees, setEmployees] = useState([]);
 
@@ -73,7 +78,7 @@ const Employees = () => {
         columns={columns}
         tableData={employees}
         addButton="Add Employee"
-        // defaultSortedBy={defaultSorted}
+        defaultSortedBy={defaultSortedBy}
       />
     </UserAuth>
   );

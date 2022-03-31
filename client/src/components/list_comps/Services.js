@@ -50,7 +50,7 @@ const Services = () => {
     {
       dataField: "regNum",
       text: "Registration",
-      filter: textFilter(),
+      filter: textFilter({ style: { height: "33px", width: "120px" } }),
     },
     {
       dataField: "serviceType",
@@ -75,6 +75,13 @@ const Services = () => {
       text: "Actions",
       formatter: action,
     }, */
+  ];
+
+  const defaultSortedBy = [
+    {
+      dataField: "serviceNum",
+      order: "desc", // or desc
+    },
   ];
 
   const [services, setServices] = useState([]);
@@ -127,6 +134,7 @@ const Services = () => {
         columns={columns}
         tableData={services}
         addButton="Add Service"
+        defaultSortedBy={defaultSortedBy}
       />
     </UserAuth>
   );

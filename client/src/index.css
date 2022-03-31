@@ -21,11 +21,13 @@
 
 .dashboard {
   /* position: fixed; */
+  height: 100vh;
   background-color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding-top: 80px;
+  /*  align-items: center; */
+  padding-top: 100px;
+  /*  padding-bottom: 250px; */
   /* padding-left: 50px;
   padding-right: 50px; */
 }

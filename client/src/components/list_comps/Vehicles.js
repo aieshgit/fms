@@ -161,6 +161,13 @@ const Vehicles = () => {
   ];
   //for bootstrap table
 
+  const defaultSortedBy = [
+    {
+      dataField: "vehicleNum",
+      order: "desc", // or desc
+    },
+  ];
+
   const [vehicles, setVehicles] = useState([]);
 
   useEffect(() => {
@@ -233,6 +240,7 @@ const Vehicles = () => {
         columns={columns}
         tableData={vehicles}
         addButton="Add Vehicle"
+        defaultSortedBy={defaultSortedBy}
       />
     </UserAuth>
   );
