@@ -92,20 +92,19 @@ const BsTable = (props) => {
               <div>
                 <Link
                   {...props.sObject}
-                  className="btn btn-primary px-1 py-1 ml-5 d-inline-block"
+                  className="btn btn-primary px-1 py-1"
                   to={`${sObject}/add`}
                 >
                   {/* {props.sObject} */}
                   Add Data
                 </Link>
-                <ExportCSVButton {...props.csvProps}>
+                <div className="d-inline-block px-2"></div>
+                <ExportCSVButton
+                  className="btn btn-primary px-1 py-1"
+                  {...props.csvProps}
+                >
                   {/* <FaFileExport size="40" color="#0d6efd" className="mb-2" /> */}
-                  <button
-                    // type="button"
-                    className="btn btn-primary px-1 py-1 ml-5 d-inline-block"
-                  >
-                    Export
-                  </button>
+                  Export
                 </ExportCSVButton>
                 <div className="m-auto d-inline">
                   <SearchBar

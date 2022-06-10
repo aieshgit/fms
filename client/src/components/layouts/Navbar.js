@@ -31,14 +31,14 @@ const Navbar = () => {
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
+            data-bs-target="#navbarToggler1"
+            aria-controls="navbarToggler1"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse">
+          <div className="collapse navbar-collapse" id="navbarToggler1">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink
@@ -93,6 +93,11 @@ const Navbar = () => {
               <li className="nav-item">
                 <NavLink className="nav-link" exact to="/odoReadings">
                   Odometer
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" exact to="/fuel">
+                  Fuel
                 </NavLink>
               </li>
             </ul>

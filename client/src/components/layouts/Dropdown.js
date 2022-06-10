@@ -6,7 +6,11 @@ import axios from "axios";
 
 const Dropdown = (props) => {
   const [obj, setObj] = useState([]);
-
+  let currentValueExists = false;
+  if (props.currentValue !== "" && props.currentValue !== null) {
+    currentValueExists = true;
+  }
+  // console.log(props.currentValue);
   useEffect(() => {
     loadObject();
   }, []);
@@ -22,7 +26,12 @@ const Dropdown = (props) => {
 
   return (
     <>
-      {<option value="DEFAULT">Select</option>}
+      {/* {<option value="">Select</option>} */}
+      {currentValueExists ? (
+        <option value={props.currentValue}>{props.currentValue}</option>
+      ) : (
+        <option value="">Select</option>
+      )}
       {obj.map((item, index) => (
         // <option value={item.id}>{item.regNum}</option>
         <option

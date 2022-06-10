@@ -33,6 +33,7 @@ const userRoute = require("./routes/users");
 //const userAuthRoute = require("./routes/user-auth");
 const downloadRoute = require("./routes/download");
 //const refreshTokenRoute = require("./routes/refresh-token");
+const fuelRoute = require("./routes/fuel");
 
 app.use("/vehicles", authenticateToken, vehicleRoute);
 app.use("/services", authenticateToken, serviceRoute);
@@ -45,6 +46,7 @@ app.use("/users", authenticateToken, userRoute);
 //app.use("/refresh-token", refreshTokenRoute);
 //app.use("/user-auth", userAuthRoute);
 app.use("/download", authenticateToken, downloadRoute);
+app.use("/fuel", authenticateToken, fuelRoute);
 
 app.listen(5000, () => {
   console.log("server has started on port 5000");

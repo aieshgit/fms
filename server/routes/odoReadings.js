@@ -3,6 +3,8 @@ const router = express.Router();
 //const cors = require("cors");
 const pool = require("../db");
 
+const validateOdometer = require("../data_validation/validate-odometer");
+
 // create odometer record
 router.post("/", async (req, res) => {
   try {
@@ -13,14 +15,32 @@ router.post("/", async (req, res) => {
         req.body[key] = null;
       }
     });
-    const { vehicleDbId, readingDate, initialReading, finalReading, mileage } =
-      req.body;
-    const newOdoReading = await pool.query(
-      "INSERT INTO odometer (vehicle_row_id, reading_date, initial_reading, final_reading, mileage) VALUES($1, $2, $3, $4, $5) RETURNING *",
-      [vehicleDbId, readingDate, initialReading, finalReading, mileage]
-    );
-    //  console.log(newOdoReading);
-    res.json(newOdoReading.rows[0]);
+
+    // validate data
+    const valResult = await validateOdometer(pool, "create", req.body);
+    // console.log(ValResult);
+    // if validation fails send error to client
+    if (valResult.isDataValid === false) {
+      res.json(valResult);
+    }
+
+    // if validation sucessfull then create record
+    else {
+      const {
+        vehicleDbId,
+        readingDate,
+        initialReading,
+        finalReading,
+        mileage,
+      } = req.body;
+      const newOdoReading = await pool.query(
+        "INSERT INTO odometer (vehicle_row_id, reading_date, initial_reading, final_reading, mileage) VALUES($1, $2, $3, $4, $5) RETURNING *",
+        [vehicleDbId, readingDate, initialReading, finalReading, mileage]
+      );
+      //  console.log(newOdoReading);
+      //  res.json(newOdoReading.rows[0]);
+      res.json(valResult);
+    }
   } catch (err) {
     console.error(err.message);
   }
@@ -52,7 +72,7 @@ router.get("/:id", async (req, res) => {
     const odoReading = await pool.query(
       `select concat('O-',o.odo_num) as "odoNum", o.reading_date as "readingDate", o.initial_reading as "initialReading",
         o.final_reading as "finalReading", o.mileage, concat('V-',v.vehicle_num, ' [',v.reg_num, ']') as "vehicleNum",
-        v.reg_num as "regNum", o.row_id as "odoReadingDbId" 
+        v.row_id as "vehicleDbId", v.reg_num as "regNum", o.row_id as "odoReadingDbId" 
         from odometer o
         inner join vehicles v
         on o.vehicle_row_id = v.row_id
@@ -74,7 +94,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//update a service
+//update a odometer
 router.put("/:id", async (req, res) => {
   try {
     //console.log(req.params);
@@ -86,13 +106,36 @@ router.put("/:id", async (req, res) => {
       }
     });
     // console.log(req.body);
-    const { id } = req.params;
-    const { readingDate, initialReading, finalReading, mileage } = req.body;
-    const UpdateOdoReading = await pool.query(
-      "UPDATE odometer SET reading_Date = $2, initial_Reading = $3, final_Reading = $4, mileage = $5  WHERE id = $1",
-      [id, readingDate, initialReading, finalReading, mileage]
-    );
-    res.json("Odometer reading was updated");
+
+    // validate data
+    const updatedData = req.body;
+    updatedData["id"] = req.params.id;
+    const valResult = await validateOdometer(pool, "update", updatedData);
+    // console.log(ValResult);
+    // if validation fails send error to client
+    if (valResult.isDataValid === false) {
+      // console.log(valResult);
+      res.json(valResult);
+    }
+
+    // if validation sucessfull then create record
+    else {
+      // destructure
+      const { id } = req.params;
+      const {
+        readingDate,
+        initialReading,
+        finalReading,
+        mileage,
+        vehicleDbId,
+      } = req.body;
+      const UpdateOdoReading = await pool.query(
+        "UPDATE odometer SET reading_Date = $2, initial_Reading = $3, final_Reading = $4, mileage = $5, vehicle_row_id = $6  WHERE id = $1",
+        [id, readingDate, initialReading, finalReading, mileage, vehicleDbId]
+      );
+      //  res.json("Odometer reading was updated");
+      res.json(valResult);
+    }
   } catch (err) {
     console.error(err.message);
   }

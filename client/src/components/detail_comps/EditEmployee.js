@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { useHistory, useParams } from "react-router-dom";
-import BottomBar from "../layouts/BottomBar";
+//import BottomBar from "../layouts/BottomBar";
 import UserAuth from "../auth/UserAuth";
+import ErrorModal from "../layouts/ErrorModal";
 
 const EditEmployee = () => {
   let history = useHistory();
@@ -34,6 +35,13 @@ const EditEmployee = () => {
     setEmployee(data);
   };
 
+  // Error modal
+  const [modal, setModal] = useState({ showModal: false, error: "" });
+
+  const handleCloseModal = () => {
+    setModal({ showModal: false, error: "" });
+  };
+
   const onInputChange = (event) => {
     //  console.log(event.target.value);
     setEmployee({ ...employee, [event.target.name]: event.target.value });
@@ -43,29 +51,37 @@ const EditEmployee = () => {
     event.preventDefault();
     try {
       //  console.log(vehicle);
-      await Axios.put(
+      const { data } = await Axios.put(
         `${process.env.REACT_APP_BACKEND_SERVER}/employees/${id}`,
         employee
       );
-      //  console.log(vehicle);
-      history.push("/employees");
+      console.log("This is data2: " + data);
+
+      // if data invalid show error pop up
+      if (data.isDataValid === false) {
+        setModal({ showModal: true, error: data.error });
+      }
+      // else push to list view
+      else {
+        history.push("/employees");
+      }
     } catch (err) {
       console.error(err.message);
     }
   };
 
-  const handleCancel = () => {
+  // uncomment if using bottom bar
+  /*   const handleCancel = () => {
     setEmployee("");
     history.push("/employees");
-  };
+  }; */
 
   return (
     <UserAuth>
-      {/* <div className="table-container"> */}
-      <div className="container">
+      <div className="container pb-5">
         <h2 className="text-center mt-3">Edit Employee</h2>
         <form onSubmit={handleSubmit}>
-          <div className="row mt-3 mb-5">
+          <div className="row mt-3">
             <div className="col-lg-3 p-3">
               <div className="mb-3">
                 <label htmlFor="firstName" className="form-label mb-0">
@@ -77,6 +93,7 @@ const EditEmployee = () => {
                   name="firstName"
                   value={employee.firstName}
                   onChange={onInputChange}
+                  required
                 />
               </div>
 
@@ -90,6 +107,7 @@ const EditEmployee = () => {
                   name="lastName"
                   value={employee.lastName}
                   onChange={onInputChange}
+                  required
                 />
               </div>
 
@@ -100,9 +118,10 @@ const EditEmployee = () => {
                 <input
                   type="text"
                   className="form-control mt-0"
-                  name="JobTitle"
+                  name="jobTitle"
                   value={employee.jobTitle}
                   onChange={onInputChange}
+                  required
                 />
               </div>
             </div>
@@ -118,6 +137,7 @@ const EditEmployee = () => {
                   name="licenseNum"
                   value={employee.licenseNum}
                   onChange={onInputChange}
+                  required
                 />
               </div>
 
@@ -225,11 +245,20 @@ const EditEmployee = () => {
               </div>
             </div>
           </div>
+          <div className="text-center pt-5">
+            <button type="submit" className="btn btn-primary w-35 py-2 px-5">
+              Save
+            </button>
+          </div>
         </form>
 
-        <BottomBar handleSubmit={handleSubmit} handleCancel={handleCancel} p />
+        {/* <BottomBar handleSubmit={handleSubmit} handleCancel={handleCancel} p /> */}
+        <ErrorModal
+          show={modal.showModal}
+          error={modal.error}
+          handleCloseModal={handleCloseModal}
+        />
       </div>
-      {/*  </div> */}
     </UserAuth>
   );
 };

@@ -19,6 +19,7 @@ import OdoReading from "./components/detail_comps/OdoReading";
 import Navbar from "./components/layouts/Navbar";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NotFound from "./components/list_comps/NotFound";
+import Dashboard from "./components/list_comps/Dashboard";
 //import AddUser from "./components/users/AddUser";
 //import EditUser from "./components/users/EditUser";
 //import User from "./components/users/User";
@@ -28,7 +29,10 @@ import Employees from "./components/list_comps/Employees";
 import Employee from "./components/detail_comps/Employee";
 import AddEmployee from "./components/detail_comps/AddEmployee";
 import EditEmployee from "./components/detail_comps/EditEmployee";
-import Dashboard from "./components/list_comps/Dashboard";
+import FuelList from "./components/list_comps/FuelList";
+import AddFuel from "./components/detail_comps/AddFuel";
+import EditFuel from "./components/detail_comps/EditFuel";
+import Fuel from "./components/detail_comps/Fuel";
 
 function App() {
   return (
@@ -63,6 +67,10 @@ function App() {
             <Route exact path="/employees/add" component={AddEmployee} />
             <Route exact path="/employees/:id" component={Employee} />
             <Route exact path="/employees/edit/:id" component={EditEmployee} />
+            <Route exact path="/fuel" component={FuelList} />
+            <Route exact path="/fuel/add" component={AddFuel} />
+            <Route exact path="/fuel/:id" component={Fuel} />
+            <Route exact path="/fuel/edit/:id" component={EditFuel} />
             {/*             <Route exact path="/about" component={About} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/users/add" component={AddUser} />

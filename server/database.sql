@@ -115,6 +115,22 @@ CREATE TABLE users
 alter sequence users_row_id_seq restart with 5001;
 
 
+CREATE TABLE fuel(
+    row_id SERIAL PRIMARY KEY,
+   	id uuid DEFAULT uuid_generate_v4 (),
+    fuel_num SERIAL UNIQUE,
+    fuel_date DATE,
+	fuel_qty Numeric(5,2),
+	total_fuel_cost Numeric(6,2),
+	vehicle_row_id INT,
+      FOREIGN KEY(vehicle_row_id) 
+	  REFERENCES vehicles(row_id)
+	/* ON DELETE SET NULL */
+);
+
+alter sequence fuel_row_id_seq restart with 201;
+
+
 
 alter sequence vehicles_row_id_seq restart with 2001;
 alter sequence services_row_id_seq restart with 1001;

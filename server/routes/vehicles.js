@@ -8,6 +8,8 @@ const pool = require("../db");
 //const authenticateToken = require("../authorization");
 //router.use(authenticateToken);
 
+const validateVehicle = require("../data_validation/validate-vehicle");
+
 // create vehicle record
 router.post("/", async (req, res) => {
   try {
@@ -18,6 +20,8 @@ router.post("/", async (req, res) => {
         req.body[key] = null;
       }
     });
+
+    //destructure
     const {
       regNum,
       vin,
@@ -43,36 +47,49 @@ router.post("/", async (req, res) => {
       engineGearBox,
       frequency,
     } = req.body;
-    const newVehicle = await pool.query(
-      "INSERT INTO vehicles (reg_num, vin, make, model, build_date, vehicle_type, etag, gcm, gvm, tare, maint_entry, maint_exit, mass_entry, mass_exit, nhvas_label_num, reg_due_date, reg_state, engine_num , engine_make, engine_model, engine_capacity, engine_gearbox, frequency) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23) RETURNING *",
-      [
-        regNum,
-        vin,
-        make,
-        model,
-        buildDate,
-        vehicleType,
-        etag,
-        gcm,
-        gvm,
-        tare,
-        mainEntry,
-        maintExit,
-        massEntry,
-        massExit,
-        nhvasLabelNum,
-        regDueDate,
-        regState,
-        engineNum,
-        engineMake,
-        engineModel,
-        engineCapacity,
-        engineGearBox,
-        frequency,
-      ]
-    );
-    //  console.log(newVehicle);
-    res.json(newVehicle.rows[0]);
+
+    // validate data
+    const ValResult = await validateVehicle(pool, regNum, res);
+    // console.log(ValResult);
+    // if validation fails send error to client
+    if (ValResult.isDataValid === false) {
+      res.json(ValResult);
+    }
+
+    // if validation sucessfull then create record
+    else {
+      const newVehicle = await pool.query(
+        "INSERT INTO vehicles (reg_num, vin, make, model, build_date, vehicle_type, etag, gcm, gvm, tare, maint_entry, maint_exit, mass_entry, mass_exit, nhvas_label_num, reg_due_date, reg_state, engine_num , engine_make, engine_model, engine_capacity, engine_gearbox, frequency) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23) RETURNING *",
+        [
+          regNum,
+          vin,
+          make,
+          model,
+          buildDate,
+          vehicleType,
+          etag,
+          gcm,
+          gvm,
+          tare,
+          mainEntry,
+          maintExit,
+          massEntry,
+          massExit,
+          nhvasLabelNum,
+          regDueDate,
+          regState,
+          engineNum,
+          engineMake,
+          engineModel,
+          engineCapacity,
+          engineGearBox,
+          frequency,
+        ]
+      );
+      //  console.log(newVehicle);
+      //  res.json(newVehicle.rows[0]);
+      res.json(ValResult);
+    }
   } catch (err) {
     console.error(err.message);
   }

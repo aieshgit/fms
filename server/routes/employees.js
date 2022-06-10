@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../db");
 
+const validateEmployee = require("../data_validation/validate-employee");
+
 // create employee record
 router.post("/", async (req, res) => {
   try {
@@ -12,23 +14,19 @@ router.post("/", async (req, res) => {
         req.body[key] = null;
       }
     });
-    const {
-      firstName,
-      lastName,
-      jobTitle,
-      licenseNum,
-      mobileNum,
-      email,
-      address,
-      city,
-      state,
-      postcode,
-      startDate,
-      endDate,
-    } = req.body;
-    const newEmployee = await pool.query(
-      "INSERT INTO employees (first_name, last_name, job_title, license_num, mobile_num, email, address, city, state, postcode, start_date, end_date) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
-      [
+
+    // validate data
+    const valResult = await validateEmployee(pool, "create", req.body);
+    // console.log(ValResult);
+    // if validation fails send error to client
+    if (valResult.isDataValid === false) {
+      res.json(valResult);
+    }
+
+    // if validation sucessfull then create record
+    else {
+      //destructure
+      const {
         firstName,
         lastName,
         jobTitle,
@@ -41,10 +39,28 @@ router.post("/", async (req, res) => {
         postcode,
         startDate,
         endDate,
-      ]
-    );
-    //  console.log(newEmployee);
-    res.json(newEmployee.rows[0]);
+      } = req.body;
+      const newEmployee = await pool.query(
+        "INSERT INTO employees (first_name, last_name, job_title, license_num, mobile_num, email, address, city, state, postcode, start_date, end_date) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
+        [
+          firstName,
+          lastName,
+          jobTitle,
+          licenseNum,
+          mobileNum,
+          email,
+          address,
+          city,
+          state,
+          postcode,
+          startDate,
+          endDate,
+        ]
+      );
+      //  console.log(newEmployee);
+      // res.json(newEmployee.rows[0]);
+      res.json(valResult);
+    }
   } catch (err) {
     console.error(err.message);
   }
@@ -62,25 +78,23 @@ router.put("/:id", async (req, res) => {
       }
     });
     //  console.log(req.body);
-    const { id } = req.params;
-    const {
-      firstName,
-      lastName,
-      jobTitle,
-      licenseNum,
-      mobileNum,
-      email,
-      address,
-      city,
-      state,
-      postcode,
-      startDate,
-      endDate,
-    } = req.body;
-    const UpdateEmployee = await pool.query(
-      "UPDATE employees SET first_name = $2, last_name = $3, job_title = $4, license_num = $5, mobile_num = $6, email = $7, address = $8, city = $9, state = $10, postcode = $11, start_date = $12, end_date = $13 WHERE id = $1",
-      [
-        id,
+
+    // validate data
+    const updatedData = req.body;
+    updatedData["id"] = req.params.id;
+    const valResult = await validateEmployee(pool, "update", updatedData);
+    // console.log(ValResult);
+    // if validation fails send error to client
+    if (valResult.isDataValid === false) {
+      // console.log(valResult);
+      res.json(valResult);
+    }
+
+    // if validation sucessfull then create record
+    else {
+      // destructure
+      const { id } = req.params;
+      const {
         firstName,
         lastName,
         jobTitle,
@@ -93,9 +107,28 @@ router.put("/:id", async (req, res) => {
         postcode,
         startDate,
         endDate,
-      ]
-    );
-    res.json("Employee was updated");
+      } = req.body;
+      const UpdateEmployee = await pool.query(
+        "UPDATE employees SET first_name = $2, last_name = $3, job_title = $4, license_num = $5, mobile_num = $6, email = $7, address = $8, city = $9, state = $10, postcode = $11, start_date = $12, end_date = $13 WHERE id = $1",
+        [
+          id,
+          firstName,
+          lastName,
+          jobTitle,
+          licenseNum,
+          mobileNum,
+          email,
+          address,
+          city,
+          state,
+          postcode,
+          startDate,
+          endDate,
+        ]
+      );
+      //res.json("Employee was updated");
+      res.json(valResult);
+    }
   } catch (err) {
     console.error(err.message);
   }
