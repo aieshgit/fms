@@ -89,7 +89,7 @@ const OdoReading = () => {
                   Initial Reading
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   disabled
                   readOnly
@@ -103,7 +103,7 @@ const OdoReading = () => {
                   Final Reading
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   disabled
                   readOnly
@@ -119,7 +119,7 @@ const OdoReading = () => {
                   Mileage
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   disabled
                   readOnly

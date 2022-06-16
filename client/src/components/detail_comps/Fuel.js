@@ -91,7 +91,7 @@ const Fuel = () => {
                   Quantity (ltr.)
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   disabled
                   readOnly
@@ -107,7 +107,7 @@ const Fuel = () => {
                   Total Cost ($)
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   disabled
                   readOnly

@@ -28,7 +28,9 @@ const Dropdown = (props) => {
     <>
       {/* {<option value="">Select</option>} */}
       {currentValueExists ? (
-        <option value={props.currentValue}>{props.currentValue}</option>
+        <option value={props.currentValue} selected>
+          {props.currentValue}
+        </option>
       ) : (
         <option value="">Select</option>
       )}

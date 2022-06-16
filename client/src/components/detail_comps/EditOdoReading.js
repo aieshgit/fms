@@ -142,7 +142,7 @@ const EditOdoReading = () => {
                   Initial Reading
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="initialReading"
                   value={odoReading.initialReading}
@@ -155,7 +155,7 @@ const EditOdoReading = () => {
                   Final Reading
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="finalReading"
                   value={odoReading.finalReading}
@@ -170,7 +170,7 @@ const EditOdoReading = () => {
                   Mileage
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="mileage"
                   value={odoReading.mileage}

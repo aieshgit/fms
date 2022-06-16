@@ -27,7 +27,7 @@ const EditFuel = () => {
     const result = await Axios.get(
       `${process.env.REACT_APP_BACKEND_SERVER}/fuel/${id}`
     );
-    console.log(result.data);
+    //  console.log(result.data);
     setFuel(result.data);
   };
 
@@ -132,7 +132,7 @@ const EditFuel = () => {
                   Quantity (ltr.)
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="fuelQty"
                   value={fuel.fuelQty}
@@ -147,7 +147,7 @@ const EditFuel = () => {
                   Total Cost ($)
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="totalFuelCost"
                   value={fuel.totalFuelCost}

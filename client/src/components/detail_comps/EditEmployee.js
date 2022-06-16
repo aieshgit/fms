@@ -55,7 +55,7 @@ const EditEmployee = () => {
         `${process.env.REACT_APP_BACKEND_SERVER}/employees/${id}`,
         employee
       );
-      console.log("This is data2: " + data);
+      //  console.log("This is data2: " + data);
 
       // if data invalid show error pop up
       if (data.isDataValid === false) {
@@ -146,7 +146,7 @@ const EditEmployee = () => {
                   Mobile#
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="mobileNum"
                   value={employee.mobileNum}
@@ -209,7 +209,7 @@ const EditEmployee = () => {
                   Postcode
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="postcode"
                   value={employee.postcode}

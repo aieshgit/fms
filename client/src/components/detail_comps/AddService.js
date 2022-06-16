@@ -78,6 +78,7 @@ const AddService = () => {
                     dropDownObject="vehicles"
                     dropDownKey1="vehicleNum"
                     dropDownKey2="regNum"
+                    currentValue=""
                   />
                 </select>
               </div>

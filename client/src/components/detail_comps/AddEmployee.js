@@ -140,7 +140,7 @@ const AddEmployee = () => {
                   Mobile#
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="mobileNum"
                   value={employee.mobileNum}
@@ -203,7 +203,7 @@ const AddEmployee = () => {
                   Postcode
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="postcode"
                   value={employee.postcode}

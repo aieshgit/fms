@@ -87,6 +87,7 @@ const AddFuel = () => {
                     dropDownObject="vehicles"
                     dropDownKey1="vehicleNum"
                     dropDownKey2="regNum"
+                    currentValue=""
                   />
                 </select>
               </div>
@@ -114,7 +115,7 @@ const AddFuel = () => {
                   Quantity (ltr.)
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="fuelQty"
                   value={fuel.fuelQty}
@@ -130,7 +131,7 @@ const AddFuel = () => {
                   Total Cost ($)
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="totalFuelCost"
                   value={fuel.totalFuelCost}

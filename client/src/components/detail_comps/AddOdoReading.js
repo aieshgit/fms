@@ -100,6 +100,7 @@ const AddOdoReading = () => {
                     dropDownObject="vehicles"
                     dropDownKey1="vehicleNum"
                     dropDownKey2="regNum"
+                    currentValue=""
                   />
                 </select>
               </div>
@@ -125,7 +126,7 @@ const AddOdoReading = () => {
                   Initial Reading
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="initialReading"
                   value={odoReading.initialReading}
@@ -139,7 +140,7 @@ const AddOdoReading = () => {
                   Final Reading
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="finalReading"
                   value={odoReading.finalReading}
@@ -155,7 +156,7 @@ const AddOdoReading = () => {
                   Mileage
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-0"
                   name="mileage"
                   //  value={odoReading.mileage}
